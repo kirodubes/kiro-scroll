@@ -1,0 +1,218 @@
+# Keybindings — Kiro SUPER launcher grammar (identical to kiro-sway) + scroll's
+# own scrolling verbs on chords free in the Kiro grammar. scroll has no i3
+# split/tabbed/stacking; windows live in a scrollable row of columns instead.
+# Drag to move / resize floating windows with SUPER + mouse.
+floating_modifier $mod normal
+
+# ── Applications & launchers ─────────────────────────────────────────────────
+bindsym $mod+Return exec $term
+bindsym $mod+t exec $term
+bindsym $mod+Shift+Return exec $files
+bindsym $mod+e exec $editor
+bindsym $mod+d exec $menu
+bindsym $mod+space exec $menu
+bindsym $mod+Shift+d exec $run
+bindsym $mod+r exec rofi-theme-selector
+bindsym Mod1+r exec rofi-theme-selector
+bindsym $mod+v exec pavucontrol
+bindsym $mod+o exec hyprpicker -a
+
+# CTRL+ALT launchers (Kiro scheme)
+bindsym Ctrl+Mod1+a exec alacritty-tweak-tool
+bindsym Ctrl+Mod1+q exec alacritty-tweak-tool
+bindsym Ctrl+Mod1+b exec brave --password-store=basic
+bindsym Ctrl+Mod1+c exec chromium -no-default-browser-check
+bindsym Ctrl+Mod1+g exec chromium -no-default-browser-check
+bindsym Ctrl+Mod1+d exec obs
+bindsym Ctrl+Mod1+e exec archlinux-tweak-tool
+bindsym Ctrl+Mod1+f exec firefox
+bindsym Ctrl+Mod1+i exec kiro-iso-builder
+bindsym Ctrl+Mod1+m exec mintstick -m iso
+bindsym Ctrl+Mod1+o exec opera
+bindsym Ctrl+Mod1+p exec pamac-manager
+bindsym Ctrl+Mod1+s exec fish-tweak-tool
+bindsym Ctrl+Mod1+u exec pavucontrol
+bindsym Ctrl+Mod1+v exec vivaldi-stable
+bindsym Ctrl+Mod1+w exec fastfetch-tweak-tool
+bindsym Ctrl+Mod1+z exec fastfetch-tweak-tool
+bindsym Ctrl+Mod1+Return exec $term
+bindsym Ctrl+Mod1+t exec $term
+bindsym Ctrl+Mod1+End exec alacritty --class btop -e btop
+bindsym Ctrl+Shift+Escape exec alacritty --class btop -e btop
+
+# SUPER + F1..F12 app keys (Kiro scheme)
+bindsym $mod+F1 exec firefox
+bindsym $mod+F2 exec code
+bindsym $mod+F3 exec inkscape
+bindsym $mod+F4 exec gimp
+bindsym $mod+F5 exec meld
+bindsym $mod+F6 exec vlc
+bindsym $mod+F7 exec virtualbox
+bindsym $mod+F8 exec thunar
+bindsym $mod+F9 exec virt-manager
+bindsym $mod+F10 exec spotify
+bindsym $mod+F11 exec rofi -show drun
+bindsym $mod+F12 exec rofi -show drun
+
+# ── Window management ────────────────────────────────────────────────────────
+bindsym $mod+q kill
+bindsym $mod+Shift+q kill
+bindsym $mod+f fullscreen
+bindsym $mod+Mod1+f fullscreen global
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+Ctrl+space focus mode_toggle
+
+# Focus (arrows) — scroll left/right through the column row, up/down within a column.
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Home focus beginning
+bindsym $mod+End focus end
+
+# Move window (SUPER+Shift+arrows); move to row ends (SUPER+Ctrl+Home/End).
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Ctrl+Home move beginning
+bindsym $mod+Ctrl+End move end
+
+# ── Scrolling layout (scroll's own verbs) ────────────────────────────────────
+# Scroll direction: horizontal vs vertical column growth.
+bindsym $mod+bracketleft set_mode h
+bindsym $mod+bracketright set_mode v
+
+# Column / window size — cycle through the layout_widths / layout_heights presets.
+bindsym $mod+minus cycle_size h prev
+bindsym $mod+equal cycle_size h next
+bindsym $mod+Shift+minus cycle_size v prev
+bindsym $mod+Shift+equal cycle_size v next
+
+# Maximize toggle (fill the screen, then restore).
+bindsym $mod+m toggle_size this 1.0 1.0
+
+# Overview of the whole scrollable workspace.
+bindsym --no-repeat $mod+grave scale_workspace overview
+
+# Align the focused window within the view (center / middle / edges).
+mode "align" {
+    bindsym c align center; mode default
+    bindsym m align middle; mode default
+    bindsym r align reset; mode default
+    bindsym $left align left; mode default
+    bindsym $right align right; mode default
+    bindsym $up align up; mode default
+    bindsym $down align down; mode default
+    bindsym Escape mode default
+}
+bindsym $mod+c mode "align"
+
+# Fit visible windows to the screen (proportional / equal).
+mode "fit_size" {
+    bindsym w fit_size h visible proportional; mode default
+    bindsym Shift+w fit_size v visible proportional; mode default
+    bindsym Ctrl+w fit_size h visible equal; mode default
+    bindsym Ctrl+Shift+w fit_size v visible equal; mode default
+    bindsym Escape mode default
+}
+bindsym $mod+w mode "fit_size"
+
+# Jump — label-based window/workspace jumping.
+mode "jump" {
+    bindsym slash jump tiling; mode default
+    bindsym c jump container; mode default
+    bindsym w jump workspaces; mode default
+    bindsym f jump floating; mode default
+    bindsym a jump all; mode default
+    bindsym Escape mode default
+}
+bindsym $mod+slash mode "jump"
+
+# ── Workspaces ───────────────────────────────────────────────────────────────
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move window to workspace N and follow it (SUPER+Ctrl)
+bindsym $mod+Ctrl+1 move container to workspace number 1; workspace number 1
+bindsym $mod+Ctrl+2 move container to workspace number 2; workspace number 2
+bindsym $mod+Ctrl+3 move container to workspace number 3; workspace number 3
+bindsym $mod+Ctrl+4 move container to workspace number 4; workspace number 4
+bindsym $mod+Ctrl+5 move container to workspace number 5; workspace number 5
+bindsym $mod+Ctrl+6 move container to workspace number 6; workspace number 6
+bindsym $mod+Ctrl+7 move container to workspace number 7; workspace number 7
+bindsym $mod+Ctrl+8 move container to workspace number 8; workspace number 8
+bindsym $mod+Ctrl+9 move container to workspace number 9; workspace number 9
+bindsym $mod+Ctrl+0 move container to workspace number 10; workspace number 10
+
+# Send window to workspace N without following (SUPER+Shift)
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Cycle workspaces
+bindsym $mod+period workspace next
+bindsym $mod+comma workspace prev
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+bindgesture swipe:3:right workspace prev
+bindgesture swipe:3:left workspace next
+
+# Scratchpad
+bindsym $mod+u scratchpad show
+bindsym $mod+Shift+u move scratchpad
+
+# ── Multimedia & hardware (work while locked) ────────────────────────────────
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# ── Wallpaper (Variety) — ohmychadwm's binding scheme, ported. Shift combos also
+# recolor via pywal (set-theme.sh regenerates waybar/mako/scroll config.d/35-colors).
+bindsym Mod1+n exec variety --next
+bindsym Mod1+Right exec variety --next
+bindsym Mod1+p exec variety --previous
+bindsym Mod1+Left exec variety --previous
+bindsym Mod1+t exec variety --trash
+bindsym Mod1+f exec variety --favorite
+bindsym Mod1+Up exec variety --pause
+bindsym Mod1+Down exec variety --resume
+bindsym Mod1+w exec variety --selector
+bindsym Mod1+Shift+n exec sh -c 'variety --next; sleep 1; ~/.config/scroll/scripts/set-theme.sh "$(variety --get)"'
+bindsym Mod1+Shift+p exec sh -c 'variety --previous; sleep 1; ~/.config/scroll/scripts/set-theme.sh "$(variety --get)"'
+bindsym Mod1+Shift+t exec sh -c 'variety --trash; sleep 1; ~/.config/scroll/scripts/set-theme.sh "$(variety --get)"'
+bindsym Mod1+Shift+f exec sh -c 'variety --favorite; sleep 1; ~/.config/scroll/scripts/set-theme.sh "$(variety --get)"'
+bindsym Mod1+Shift+u exec sh -c '~/.config/scroll/scripts/set-theme.sh "$(variety --get)"'
+
+# ── Screenshots ──────────────────────────────────────────────────────────────
+bindsym Print exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Print exec grim - | wl-copy
+
+# ── System & session ─────────────────────────────────────────────────────────
+bindsym $mod+x exec $logout
+bindsym $mod+Shift+x exec $powermenu
+bindsym $mod+Ctrl+s exec $keybindings
+bindsym $mod+Shift+r reload
+bindsym Ctrl+Mod1+k exec $logout
+bindsym Ctrl+Mod1+l exec archlinux-logout --settings
+bindsym Ctrl+Mod1+r exec archlinux-betterlockscreen

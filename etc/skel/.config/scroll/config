@@ -1,0 +1,41 @@
+# ════════════════════════════════════════════════════════════════════════
+# Kiro scroll baseline config  (~/.config/scroll/config)
+# ════════════════════════════════════════════════════════════════════════
+# Target: scroll (dawsers/scroll) — a fork of sway with a scrolling / PaperWM-
+# style column layout (like niri, but on the sway codebase). Kiro's scrollable-
+# tiling Wayland edition.
+#
+# Ports kiro-sway's look & feel — same SUPER keybind grammar, same Kiro app
+# launchers (CTRL+ALT + SUPER+F1..F12), the waybar + mako + swaybg shell, and the
+# hyprlock/hypridle lock pipeline — onto scroll's scrolling model. Because scroll
+# sets SWAYSOCK as well as SCROLLSOCK, waybar's native sway/workspaces module works
+# unchanged. IPC is `scrollmsg` (not swaymsg).
+#
+# This file only defines variables and pulls in the modular config.d/* snippets.
+# Edit those, not this entrypoint:
+#   10-input  20-output  30-appearance  35-colors (pywal-generated)
+#   40-autostart  50-window-rules  60-keybindings
+# Reference: man 5 scroll
+# ────────────────────────────────────────────────────────────────────────
+
+# ── Variables ────────────────────────────────────────────────────────────
+set $mod Mod4
+set $term alacritty
+set $files thunar
+set $editor code
+set $menu rofi -show drun
+set $run rofi -show run
+set $lock hyprlock
+set $logout archlinux-logout
+set $powermenu kiro-powermenu
+set $keybindings kiro-keybindings
+
+# Directional keys — arrows for focus/move (kiro grammar).
+set $left Left
+set $down Down
+set $up Up
+set $right Right
+
+# ── Modular config ───────────────────────────────────────────────────────
+# scroll loads the glob in sorted order, so the NN- prefixes control sequence.
+include ~/.config/scroll/config.d/*

@@ -1,0 +1,21 @@
+# Input — keyboard + touchpad (man 5 scroll-input; sway-compatible syntax)
+input "type:keyboard" {
+    xkb_layout "be,us"
+    xkb_options "compose:caps"
+    repeat_delay 600
+    repeat_rate 40
+}
+
+input "type:touchpad" {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+    scroll_method two_finger
+}
+
+# Caps-as-compose already set; numlock on at start.
+input "type:keyboard" {
+    xkb_numlock enabled
+}
+
+seat * xcursor_theme Bibata-Modern-Ice 24

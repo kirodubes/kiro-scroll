@@ -1,0 +1,7 @@
+# Output — display + wallpaper.
+# Wallpaper is set by swaybg in 40-autostart (kiro-sway-consistent), so the
+# native `output * bg` line is intentionally NOT used here (avoids a double-set).
+output * scale 1
+
+# HiDPI example (uncomment + adjust):
+# output eDP-1 scale 1.6

@@ -1,0 +1,30 @@
+# Autostart — session services.
+# exec_always restarts the item on `scrollmsg reload`; exec is one-shot per login.
+
+# Authentication agent + environment for portals/screensharing.
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec dbus-update-activation-environment --systemd --all
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+# Create the XDG user dirs on first login (scroll doesn't run /etc/xdg/autostart).
+exec xdg-user-dirs-update
+
+# Mirror the GTK theme/icons/cursor/font into gsettings for GTK4/libadwaita apps.
+exec_always ~/.config/scroll/scripts/import-gsettings.sh
+
+# Wallpaper + pywal theming (palette → waybar/mako/scroll colours).
+exec swaybg -m fill -i ~/.config/scroll/bg/kiro.jpg
+exec variety
+exec_always ~/.config/scroll/scripts/set-theme.sh
+
+# Bar (GTK_A11Y=none skips the at-spi bus so waybar paints immediately at login
+# instead of stalling ~25s), notifications, idle-lock daemon.
+exec_always env GTK_A11Y=none waybar -c ~/.config/waybar/config-scroll.jsonc
+exec mako
+exec hypridle
+
+# Network applet.
+exec nm-applet --indicator
+
+# Live ISO only: auto-launch the installer. kiro_final strips this line on install.
+exec sh -c '[ -d /run/archiso/bootmnt ] && calamares_polkit -d -style kvantum'

@@ -1,0 +1,39 @@
+# Appearance — borders, gaps, font, scroll's decoration + animations.
+# NOTE: scroll is NOT swayfx — it has no blur/corner_radius/layer_effects. It uses
+# its own `default_decoration` (rounded corners + shadow) and an `animations {}`
+# block. Do not copy swayfx effect lines here; they error on scroll.
+
+default_border pixel 2
+default_floating_border pixel 2
+titlebar_padding 1
+font pango:JetBrainsMono Nerd Font 10
+
+gaps inner 6
+gaps outer 4
+smart_gaps off
+
+# ── Rounded corners + subtle shadow (scroll-native decoration) ───────────────
+default_decoration border_radius 8 shadow true shadow_dynamic false \
+    shadow_size 40 shadow_blur 30 shadow_offset 0 0 shadow_color #00000070 \
+    dim false dim_color #00000040
+titlebar_border_radius 8
+
+# ── Scrolling layout — column/row size presets ───────────────────────────────
+# cycle_size (SUPER + -/=) steps a window through these fractions of the screen.
+layout_default_width 0.5
+layout_default_height 1.0
+layout_widths [0.33333333 0.5 0.666666667 1.0]
+layout_heights [0.33333333 0.5 0.666666667 1.0]
+center_horizontal_if_fits yes
+center_vertical_if_fits yes
+
+# ── Animations (scroll's signature smoothness) ───────────────────────────────
+animations {
+    enabled yes
+    default yes 300 var 3 [ 0.215 0.61 0.355 1 ]
+    window_open yes 300 var 3 [ 0 0 1 1 ]
+    window_move yes 300 var 3 [ 0.215 0.61 0.355 1 ]
+    window_size yes 300 var 3 [ -0.35 0 0 0.5 ]
+    workspace_switch yes 500 var simple [ 0.215 0.61 0.355 1 ]
+    window_fullscreen yes 500 var simple [ 0.3 0.5 0.4 1 ]
+}

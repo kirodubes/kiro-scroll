@@ -1,0 +1,8 @@
+# Window colours — Tokyo Night defaults.
+# Regenerated at login by ~/.config/scroll/scripts/set-theme.sh (pywal) from the
+# wallpaper, then applied with `scrollmsg reload`. Order: border bg text indicator child_border
+client.focused          #7aa2f7 #1a1b26 #c0caf5 #7aa2f7 #7aa2f7
+client.focused_inactive #414868 #1a1b26 #a9b1d6 #414868 #414868
+client.unfocused        #414868 #1a1b26 #565f89 #414868 #414868
+client.urgent           #f7768e #1a1b26 #1a1b26 #f7768e #f7768e
+client.placeholder      #1a1b26 #1a1b26 #c0caf5 #1a1b26 #1a1b26
