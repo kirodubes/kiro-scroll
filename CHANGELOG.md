@@ -5,6 +5,14 @@ Format: one dated entry per day (`YYYY.MM.DD`), newest first.
 
 ## 2026.07.05
 
+### Fixed
+- **Config-error red banner on first boot (`scrollnag`).** Three directives in `30-appearance` were
+  taken from a newer `~/Public/scroll` `config.in` than the shipped `sway-scroll 1.12.15` accepts:
+  `titlebar_border_radius 8` ("Invalid size specified") and `center_horizontal_if_fits` /
+  `center_vertical_if_fits` ("Unknown/invalid command"). Removed all three (rounded corners already
+  come from `default_decoration border_radius`; the center-if-fits defaults apply anyway). Verified
+  on the riker test box: `scroll --validate` clean, live `scrollmsg reload` → `success`, banner gone.
+
 ### What Changed
 - **Initial config package for the Kiro scroll edition.** Stands up the scrollable-tiling Wayland
   edition built on [scroll](https://github.com/dawsers/scroll) (a fork of sway with a PaperWM-style

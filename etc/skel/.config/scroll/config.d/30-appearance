@@ -16,7 +16,6 @@ smart_gaps off
 default_decoration border_radius 8 shadow true shadow_dynamic false \
     shadow_size 40 shadow_blur 30 shadow_offset 0 0 shadow_color #00000070 \
     dim false dim_color #00000040
-titlebar_border_radius 8
 
 # ── Scrolling layout — column/row size presets ───────────────────────────────
 # cycle_size (SUPER + -/=) steps a window through these fractions of the screen.
@@ -24,8 +23,6 @@ layout_default_width 0.5
 layout_default_height 1.0
 layout_widths [0.33333333 0.5 0.666666667 1.0]
 layout_heights [0.33333333 0.5 0.666666667 1.0]
-center_horizontal_if_fits yes
-center_vertical_if_fits yes
 
 # ── Animations (scroll's signature smoothness) ───────────────────────────────
 animations {
