@@ -1,7 +1,7 @@
 # Input — keyboard + touchpad (man 5 scroll-input; sway-compatible syntax)
 input "type:keyboard" {
-    xkb_layout "be,us"
-    xkb_options "compose:caps"
+    xkb_layout "us,be"
+    xkb_options "grp:alt_shift_toggle,compose:caps"
     repeat_delay 600
     repeat_rate 40
 }
