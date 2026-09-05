@@ -205,8 +205,8 @@ bindsym Mod1+Shift+f exec sh -c 'variety --favorite; sleep 1; ~/.config/scroll/s
 bindsym Mod1+Shift+u exec sh -c '~/.config/scroll/scripts/set-theme.sh "$(variety --get)"'
 
 # ── Screenshots ──────────────────────────────────────────────────────────────
-bindsym Print exec grim -g "$(slurp)" - | wl-copy
-bindsym $mod+Print exec grim - | wl-copy
+bindsym Print exec kiro-screenshot region
+bindsym $mod+Print exec kiro-screenshot screen
 
 # ── System & session ─────────────────────────────────────────────────────────
 bindsym $mod+x exec $logout
