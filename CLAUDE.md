@@ -65,6 +65,6 @@ open-core, shipped via `nemesis_repo`. Full research + decisions live in the int
 
 ## Build / delivery
 - Source-of-truth for the config; delivered as the `kiro-scroll` package via
-  `../KIROTUX-PKG-BUILD/kiro-scroll/build.sh` (public recipe → `~/EDU/nemesis_repo/`). After editing
+  `~/KIRO-PKG-BUILD-APPS/kiro-scroll/build.sh` (public recipe → `~/EDU/nemesis_repo/`). After editing
   here: rebuild the package (recipe `build.sh`), then the ISO to test a fresh install.
-- See [../CLAUDE.md](../CLAUDE.md) for the full KIROTUX delivery architecture.
+- See [KIROTUX/CLAUDE.md](../../KIROTUX/CLAUDE.md) for the full KIROTUX delivery architecture.
