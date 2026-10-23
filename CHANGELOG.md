@@ -3,6 +3,29 @@
 All notable changes to **kiro-scroll** are documented here.
 Format: one dated entry per day (`YYYY.MM.DD`), newest first.
 
+## 2026.10.23
+
+### What Changed
+
+- **Variety + recolour works on every wallpaper, with the right colours.** Same two fixes as kiro-wayfire 26.10-12:
+  - The theme now uses **pywal16** (`python-pywal16`), the maintained fork of pywal. The old pywal 3.3 (archived
+    upstream) gave up on flat wallpapers with few colours and then nothing was recoloured (about 1 in 25 Variety
+    wallpapers). `set-theme.sh` is unchanged.
+  - Alt+Shift+N, Alt+Shift+P, Alt+Shift+T and Alt+Shift+F wait 3 seconds instead of 1 before asking Variety for the
+    new wallpaper: after 1 second Variety could still report the previous one, so the colours lagged one wallpaper
+    behind. New installs only; existing users can change `sleep 1` to `sleep 3` in their `~/.config/scroll/config.d/60-keybindings`.
+
+### Technical Details
+
+- pywal 3.3's imagemagick backend needs 16 distinct colours and exits 1 when it can't find them; `set-theme.sh` runs
+  under `set -e`, so it stopped before waybar and the borders. The package dependency (KIRO-PKG-BUILD-APPS
+  PKGBUILD) moves to `python-pywal16`, built from its AUR recipe into nemesis_repo. It `provides`/`conflicts`
+  `python-pywal`, so an update replaces the old package. Both fixes were tested on wayfire on bare metal.
+
+### Files Modified
+
+- `etc/skel/.config/scroll/config.d/60-keybindings`
+
 ## 2026.10.10
 
 ### What Changed
